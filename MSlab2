@@ -1,0 +1,20 @@
+/* mbed Microcontroller Library
+ * Copyright (c) 2019 ARM Limited
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include "mbed.h"
+#include "platform/mbed_thread.h"
+
+
+// Blinking rate in milliseconds
+#define BLINKING_RATE_MS                                                    500
+PwmOut wave(D5);
+
+int main()
+{
+    wave.period(0.001f);        //set the period
+    wave.write(0.5f);           //set the duty cycle
+    
+    while(1);
+}
