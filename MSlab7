@@ -1,0 +1,25 @@
+/* mbed Microcontroller Library
+ * Copyright (c) 2019 ARM Limited
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include "mbed.h"
+#include "platform/mbed_thread.h"
+
+
+// Blinking rate in milliseconds
+#define PAUSE_RATE_MS                                                    3
+AnalogOut Aout(A4);    //create an analogue output on analogue-pin 4
+
+
+int main()
+{
+    while(1) 
+    {
+        for(int i=0; i<500; i++)            //500 steps
+        {
+            Aout = 0.001818*i;              //change of analog signal each step
+            wait_ns(4435);                  //pause time
+        }//end for for
+    }//end for while
+}//end for main
