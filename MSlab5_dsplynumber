@@ -1,0 +1,37 @@
+/* mbed Microcontroller Library
+ * Copyright (c) 2019 ARM Limited
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include "mbed.h"
+#include "platform/mbed_thread.h"
+
+
+// Blinking rate in milliseconds
+#define PAUSE_RATE_MS                                                    500
+
+BusOut display(D2,D3,D4,D5,D6,D9,D10,D11);  //segments A,B,C,D,E,F,G,DP 
+
+int main()
+{
+    while(1)
+    {
+        for(int i=0; i<10;i++)
+        { 
+            switch(i)
+            {
+                case 0: display = 0x3F; break;          //display 0 
+                case 1: display = 0x06; break;          //display 1
+                case 2: display = 0x5B; break;          //display 2 
+                case 3: display = 0x4F; break;          //display 3
+                case 4: display = 0x66; break;          //display 4 
+                case 5: display = 0x6D; break;          //display 5
+                case 6: display = 0x7D; break;          //display 6 
+                case 7: display = 0x07; break;          //display 7
+                case 8: display = 0x7F; break;          //display 8 
+                case 9: display = 0x6F; break;          //display 9
+            }//end  of  switch
+            thread_sleep_for(PAUSE_RATE_MS);         //display value for 0.5s
+        }   //end   of  for
+    }       //end   of  while
+}           //end   of  main
