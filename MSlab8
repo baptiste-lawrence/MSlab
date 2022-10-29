@@ -1,0 +1,60 @@
+/* mbed Microcontroller Library
+ * Copyright (c) 2019 ARM Limited
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+#include "mbed.h"
+#include "platform/mbed_thread.h"
+
+
+// Blinking rate in milliseconds
+#define BLINKING_RATE_MS                                                    500
+AnalogIn Ain(A6);
+DigitalOut Led1(D3);            //define the pin connected to led1
+DigitalOut Led2(D4);            //define the pin connected to led2
+DigitalOut Led3(D5);            //define the pin connected to led3
+DigitalOut Led4(D6);            //define the pin connected to led4
+
+
+int main()
+{
+     while(1)
+     {
+         if(Ain >= 0 && Ain < 0.1818)       //all leds off
+         {
+             Led1 = 0;
+             Led2 = 0;
+             Led3 = 0;
+             Led4 = 0;
+         }
+         else if(Ain >= 0.1818 && Ain < 0.3636)     //led1 on
+         {
+             Led1 = 1;
+             Led2 = 0;
+             Led3 = 0;
+             Led4 = 0;
+         }
+         else if(Ain >= 0.3636 && Ain < 0.5454)     //led1 and led2 on
+         {
+             Led1 = 1;
+             Led2 = 1;
+             Led3 = 0;
+             Led4 = 0;
+         }
+         else if(Ain >= 0.5454 && Ain < 0.7272)     //led1, led2 and led3 on
+         {             
+             Led1 = 1;
+             Led2 = 1;
+             Led3 = 1;
+             Led4 = 0;
+         }
+         else                                       //all leds off
+         {
+             Led1 = 1;
+             Led2 = 1;
+             Led3 = 1;
+             Led4 = 1;
+         }//end of else
+         thread_sleep_for(BLINKING_RATE_MS);        //pause for 0.5s
+     }//end of while
+}//end of main
