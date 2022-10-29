@@ -1,2 +1,3 @@
-# MSlab1
-Micro System Lab session 1
+# MSlab
+CODES for Microelectronic System Lab session
+Please do not copy directly and using only if you understand it
